@@ -1,6 +1,8 @@
 // Specials Section Component
-import React from 'react';
 import SpecialCard from './SpecialCard';
+import brushC from '../assets/food/bruschetta.jpeg';
+import greekS from '../assets/food/greek-salad.webp';
+import lemonD from '../assets/food/lemon-dessert.webp';
 
 const SpecialsSection = ({ onOrderClick }) => {
   const specials = [
@@ -8,19 +10,19 @@ const SpecialsSection = ({ onOrderClick }) => {
       title: 'Greek Salad',
       description: 'The famous greek salad of crispy lettuce, peppers, olives and our Chicago style feta cheese, garnished with crunchy garlic and rosemary croutons.',
       price: '$12.99',
-      imagePlaceholder: 'Greek Salad'
+      image: greekS
     },
     {
       title: 'Bruschetta',
       description: 'Our Bruschetta is made from grilled bread that has been smeared with garlic and seasoned with salt and olive oil.',
       price: '$7.99',
-      imagePlaceholder: 'Bruschetta'
+      image: brushC
     },
     {
       title: 'Lemon Dessert',
       description: 'This comes straight from grandma\'s recipe book, every last ingredient has been sourced and is as authentic as can be imagined.',
       price: '$6.99',
-      imagePlaceholder: 'Lemon Dessert'
+      image: lemonD
     }
   ];
 

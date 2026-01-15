@@ -15,7 +15,10 @@ const App = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      <Navigation />
+      <Navigation 
+        onReserveClick={() => setIsReserveModalOpen(true)}
+        onOrderClick={() => setIsOrderModalOpen(true)}
+      />
       <main>
         <HeroSection onReserveClick={() => setIsReserveModalOpen(true)} />
         <SpecialsSection onOrderClick={() => setIsOrderModalOpen(true)} />

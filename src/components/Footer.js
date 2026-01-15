@@ -1,4 +1,6 @@
 // Footer Component
+import footerLogo from '../assets/footer-logo.png';
+
 const Footer = () => {
   const footerSections = [
     {
@@ -20,9 +22,11 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="flex items-start">
-            <div className="w-32 h-32 bg-gray-200 rounded flex items-center justify-center">
-              <span className="text-xs text-gray-500">Logo</span>
-            </div>
+            <img 
+              src={footerLogo} 
+              alt="Little Lemon Logo" 
+              className="w-32 h-32 object-contain"
+            />
           </div>
           {footerSections.map((section, index) => (
             <div key={index}>
@@ -30,7 +34,7 @@ const Footer = () => {
               <ul className="space-y-2">
                 {section.links.map((link, linkIndex) => (
                   <li key={linkIndex}>
-                    <a href="#" className="text-gray-600 hover:text-green-700 transition-colors">
+                    <a href="#top" className="text-gray-600 hover:text-green-700 transition-colors">
                       {link}
                     </a>
                   </li>

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import navLogo from '../assets/nav-logo.png';
 
 // Navigation Component
-const Navigation = () => {
+const Navigation = ({ onReserveClick, onOrderClick }) => {
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -13,6 +14,14 @@ const Navigation = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const handleNavClick = (item) => {
+    if (item === 'Reservations') {
+      onReserveClick();
+    } else if (item === 'Order Online') {
+      onOrderClick();
+    }
+  };
+
   const navItems = ['Home', 'About', 'Menu', 'Reservations', 'Order Online', 'Login'];
 
   return (
@@ -20,17 +29,30 @@ const Navigation = () => {
       <div className="max-w-7xl mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center">
-            <div className="w-16 h-16 bg-gray-200 rounded flex items-center justify-center">
-              {/* Logo placeholder - replace with actual logo */}
-              <span className="text-xs text-gray-500">Logo</span>
-            </div>
+            <img 
+              src={navLogo} 
+              alt="Little Lemon Logo" 
+              className="h-20 w-auto object-contain"
+            />
           </div>
           <ul className="flex space-x-8">
             {navItems.map((item) => (
               <li key={item}>
-                <a href={`#${item.toLowerCase().replace(' ', '-')}`} className="text-gray-700 hover:text-green-700 transition-colors font-medium">
-                  {item}
-                </a>
+                {item === 'Reservations' || item === 'Order Online' ? (
+                  <button
+                    onClick={() => handleNavClick(item)}
+                    className="text-gray-700 hover:text-green-700 transition-colors font-medium"
+                  >
+                    {item}
+                  </button>
+                ) : (
+                  <a 
+                    href={`#${item.toLowerCase().replace(' ', '-')}`} 
+                    className="text-gray-700 hover:text-green-700 transition-colors font-medium"
+                  >
+                    {item}
+                  </a>
+                )}
               </li>
             ))}
           </ul>
