@@ -1,25 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import navLogo from '../assets/nav-logo.png';
-// 1. Import your menu image (adjust the filename extension if it's .jpg or .jpeg)
-import menuPic from '../assets/menu.webp'; 
+import menuPic from '../assets/menu.webp';
 
-const Navigation = ({ onReserveClick, onOrderClick }) => {
+// 1. Removed LoginModal import because it is now handled in App.js
+// 2. Added onLoginClick to the destructured props
+const Navigation = ({ onReserveClick, onOrderClick, onLoginClick }) => {
   const [isScrolled, setIsScrolled] = useState(false);
-  // 2. State to handle the visibility of the menu image
   const [showMenuImage, setShowMenuImage] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
-
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const handleNavClick = (item) => {
     if (item === 'Home') {
-      // Scrolls to the very top of the page (0,0)
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } else if (item === 'About') {
       const aboutSection = document.getElementById('about');
@@ -32,9 +30,11 @@ const Navigation = ({ onReserveClick, onOrderClick }) => {
       onReserveClick();
     } else if (item === 'Order Online') {
       onOrderClick();
+    } else if (item === 'Login') {
+      // 3. Now calls the function passed down from App.js
+      onLoginClick(); 
     }
   };
-
 
   const navItems = ['Home', 'About', 'Menu', 'Reservations', 'Order Online', 'Login'];
 
@@ -44,17 +44,12 @@ const Navigation = ({ onReserveClick, onOrderClick }) => {
         <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center">
-              <img 
-                src={navLogo} 
-                alt="Little Lemon Logo" 
-                className="h-20 w-auto object-contain"
-              />
+              <img src={navLogo} alt="Little Lemon Logo" className="h-20 w-auto object-contain" />
             </div>
             <ul className="flex space-x-8">
               {navItems.map((item) => (
                 <li key={item}>
-                  {/* 4. Update the condition to include 'Menu' as a clickable button */}
-                  {item === 'Reservations' || item === 'Order Online' || item === 'Menu' ? (
+                  {['Home', 'About', 'Menu', 'Reservations', 'Order Online', 'Login'].includes(item) ? (
                     <button
                       onClick={() => handleNavClick(item)}
                       className="text-gray-700 hover:text-green-700 transition-colors font-medium"
@@ -76,31 +71,25 @@ const Navigation = ({ onReserveClick, onOrderClick }) => {
         </div>
       </nav>
 
-      {/* 5. The Menu Image Overlay (Modal) */}
+      {/* Menu Modal remains here because it's specific to the Nav's Menu button */}
       {showMenuImage && (
         <div 
           className="fixed inset-0 z-[100] flex items-center justify-center bg-black bg-opacity-80 p-4"
-          onClick={() => setShowMenuImage(false)} // Close when clicking the background
+          onClick={() => setShowMenuImage(false)}
         >
           <div className="relative max-w-4xl w-full flex flex-col items-center">
-            {/* Close Button */}
             <button 
-              className="absolute -top-12 right-0 text-white text-xl font-bold bg-green-700 px-4 py-2 rounded hover:bg-green-800 transition-colors"
+              className="absolute -top-12 right-0 text-white bg-green-700 px-4 py-2 rounded font-bold"
               onClick={() => setShowMenuImage(false)}
             >
               Close
             </button>
-            
-            {menuPic}
-            <img 
-              src={menuPic} 
-              alt="Restaurant Menu" 
-              className="max-h-[85vh] w-auto shadow-2xl rounded-lg"
-              onClick={(e) => e.stopPropagation()} // Prevent closing when clicking the image itself
-            />
+            <img src={menuPic} alt="Menu" className="max-h-[85vh] rounded-lg shadow-2xl" onClick={(e) => e.stopPropagation()} />
           </div>
         </div>
       )}
+      
+      {/* 4. Removed the LoginModal component from here because it is now rendered in App.js */}
     </>
   );
 };

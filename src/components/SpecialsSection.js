@@ -35,7 +35,7 @@ const SpecialsSection = ({ onOrderClick }) => {
             onClick={onOrderClick}
             className="bg-green-800 text-white px-6 py-2 rounded hover:bg-green-700 transition-colors font-medium"
           >
-            Online Menu
+            Order Online
           </button>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
