@@ -3,7 +3,7 @@ import dishPic from '../assets/food/food5.jpeg';
 
 const HeroSection = ({ onReserveClick }) => {
   return (
-    <section className="pt-32 pb-16 px-6 bg-gradient-to-r from-yellow-100 to-yellow-50">
+    <section className="pt-32 pb-16 px-6 bg-gradient-to-r from-yellow-100 to-yellow-50" id="home">
       <div className="max-w-7xl mx-auto">
         <div className="flex items-center justify-between">
           <div className="flex-1 pr-12">
@@ -21,7 +21,7 @@ const HeroSection = ({ onReserveClick }) => {
           <div className="flex-1">
             <img 
               src={dishPic} 
-              alt="dish picture" 
+              alt="dish pic" 
               className="w-full h-96 rounded-lg object-cover shadow-lg"
             />
           </div>

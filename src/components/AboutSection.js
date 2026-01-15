@@ -4,7 +4,7 @@ import abtImg2 from '../assets/food/food5.jpeg';
 
 const AboutSection = () => {
   return (
-    <section className="py-16 px-6 bg-white">
+    <section className="py-16 px-6 bg-white" id='about'>
       <div className="max-w-7xl mx-auto">
         <div className="flex items-center justify-between">
           <div className="flex-1 pr-12">
